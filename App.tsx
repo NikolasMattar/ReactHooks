@@ -6,13 +6,23 @@ export default function App() {
   const [name, setName] = useState("Nikolas")
   const [number, setNumber] = useState(1)
 
+  const numberRef = useRef(0)
+
+  console.log(numberRef)
+
   useEffect(() => {
     console.log("Roda a cada renderização.")
+    // setNumber((prevNumber) => prevNumber + 1)
+    numberRef.current = Math.random()
   })
 
   useEffect(() => {
     console.log("somei um")
   },[number])
+
+  useEffect(() => {
+    console.log("Só executa uma vez")
+  })
 
   const changeNumber = () => {
    // setNumber(number + 1)
@@ -29,7 +39,7 @@ export default function App() {
         value={name}
         style= {styles.input}
       />
-
+      <Text>O numero Ref {numberRef.current}</Text>
       <Text>o numero é {number}</Text>
       <Button
         onPress={changeNumber}
